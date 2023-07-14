@@ -29,7 +29,7 @@ public class RequestJsonController {
                        @RequestJson(value = "jsonNode1", required = false) JsonNode jsonNode1,
                        @RequestJson JsonNode jsonNode,
 					   @RequestJsonParam Boolean bool,
-					   @RequestJsonParam(value = "long12", required = false) long long1,
+					   @RequestJsonParam(value = "long1", required = false) long long1,
 					   @RequestJsonParam String str,
 					   @RequestJsonParam Object object,
 					   @RequestJsonParam(value = "testA") EnableRequestJsonTest.TestA testA,
