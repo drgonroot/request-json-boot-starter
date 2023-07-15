@@ -32,18 +32,19 @@ public class Application {
 ### HTTP请求解析参数使用指南
 http发送Post请求，content-type: application/json。
 通过RequestJson.class RequestJsonParam.class 提取json中参数值
-```json
-{
-  "other1": "hello world",
-  "other2": {
-    "other3":"hello world"
-  },
-  "list": ["1", "2", "3"],
-  "set":[1, 2, 3]
-}
-```
 
 ```java
+/**
+ * request body json:
+ * {
+ *   "other1": "hello world",
+ *   "other2": {
+ *      "other3":"hello world"
+ *   },
+ *   "list": ["1", "2", "3"],
+ *   "set":[1, 2, 3]
+ * }
+ */
 @RestController
 public class TestController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
