@@ -1,4 +1,4 @@
-package com.byte102.spring;
+package com.btye102.spring;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeansException;

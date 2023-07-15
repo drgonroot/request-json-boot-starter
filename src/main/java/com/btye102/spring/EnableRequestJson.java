@@ -1,4 +1,4 @@
-package com.byte102.spring;
+package com.btye102.spring;
 
 import org.springframework.context.annotation.Import;
 
