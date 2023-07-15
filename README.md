@@ -1,3 +1,11 @@
+
+# spring-request-json: 可多层级提取request body json指定参数值
+
+[![maven central](https://img.shields.io/maven-central/v/cn.hutool/hutool-all.svg?label=Maven%20Central)](https://github.com/drgonroot/spring-request-json)   [![License](https://img.shields.io/:license-MulanPSL2-blue.svg)](http://license.coscl.org.cn/MulanPSL2/index.html)
+[![jdk](https://img.shields.io/badge/JDK-8+-green.svg)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+
+-------
+
 ## 📚简介
 
 支持语言: java8    
@@ -59,4 +67,17 @@ public class TestController {
 
     }
 }
+```
+
+## 📦安装
+
+### 🍊Maven
+在项目的pom.xml的dependencies中加入以下内容:
+
+```xml
+<dependency>
+  <groupId>com.btye102</groupId>
+  <artifactId>spring-request-json</artifactId>
+  <version>1.0.0</version>
+</dependency>
 ```
