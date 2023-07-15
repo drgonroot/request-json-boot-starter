@@ -5,7 +5,7 @@
 使用json工具: jackson
 
 对接前端上传各种json的参数:   
-* 使用Spring框架，需要使用RequestBody.class解析参数，需要编写对应实体类，同时解析粒度是粒度大。
+* 使用Spring框架，需要使用RequestBody.class解析参数，需要编写对应实体类，同时解析粒度是类级别。
 * 对接本框架，可以像RequestParam.class注解一样去获取对应参数值，同时还支持多层级的获取参数值的。解析注解：RequestJson.class  RequestJsonParam.class。
 
 ## 使用指南
