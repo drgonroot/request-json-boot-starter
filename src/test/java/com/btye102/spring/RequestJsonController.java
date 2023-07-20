@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by useheart on 2023/7/11
@@ -24,6 +25,9 @@ public class RequestJsonController {
                        @RequestJsonParam(value = "testMap2", required = false) Map<String, Object> testMap2,
                        @RequestJsonParam(value = "objectSet2", required = false) List<Object> set2,
                        @RequestJsonParam(value = "testAList2", required = false) List<EnableRequestJsonTest.TestA> list2,
+                       @RequestJsonParam(value = "longList") List<Long> longList,
+                       @RequestJsonParam(value = "longList") List<Integer> integerList,
+                       @RequestJsonParam(value = "longList") Set<Integer> integerSet,
                        @RequestJsonParam(value = "int1", required = false) Integer inta,
                        @RequestJson(value = "jsonNode1", required = false) JsonNode jsonNode1,
                        @RequestJson JsonNode jsonNode,

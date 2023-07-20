@@ -1,5 +1,6 @@
 package com.btye102.spring;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.MethodParameter;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -58,9 +61,22 @@ public class RequestJsonParamMethodArgumentResolver extends RequestJsonMethodArg
         JsonNode atNode = rootNode.at(atName);
         Object arg = null;
         if (!atNode.isMissingNode()) {
-            arg = objectMapper.convertValue(atNode, parameter.getParameterType());
+            arg = objectMapper.convertValue(atNode, parseJavaType(parameter));
         }
         nextStep = checkValueAndReturn(name, arg, defaultValue, parameter, isRequired);
         return nextStep.getValue();
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private JavaType parseJavaType(MethodParameter parameter) {
+        final Class<?> parameterType = parameter.getParameterType();
+        if (Collection.class.isAssignableFrom(parameterType)) {
+            final ParameterizedType type = (ParameterizedType)parameter.getGenericParameterType();
+            final Class<? extends Collection> rawType = (Class<? extends Collection>)type.getRawType();
+            final Class<?> actualTypeArgument = (Class<?>)type.getActualTypeArguments()[0];
+            return objectMapper.getTypeFactory().constructCollectionType(rawType, actualTypeArgument);
+        } else {
+            return objectMapper.getTypeFactory().constructType(parameterType);
+        }
     }
 }

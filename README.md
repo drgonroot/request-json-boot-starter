@@ -8,7 +8,7 @@
 
 ## 📚简介
 
-支持语言: java8    
+支持语言: java8+    
 使用springboot: springboot2   
 使用json工具: jackson
 
@@ -79,6 +79,6 @@ public class TestController {
 <dependency>
   <groupId>com.btye102</groupId>
   <artifactId>request-json-boot-starter</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
