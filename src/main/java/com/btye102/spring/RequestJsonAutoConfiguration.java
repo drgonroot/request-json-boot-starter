@@ -2,6 +2,7 @@ package com.btye102.spring;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeansException;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.ApplicationContext;
@@ -38,8 +39,8 @@ import java.util.List;
  * Created by useheart on 2023/7/11
  * @author useheart
  */
+@ConditionalOnClass(ObjectMapper.class)
 public class RequestJsonAutoConfiguration implements WebMvcConfigurer, ApplicationContextAware {
-	public static final String OBJECT_MAPPER_BEAN_NAME = "RequestJsonAutoConfiguration.ObjectMapper";
 
 	private ApplicationContext applicationContext;
 
@@ -47,16 +48,6 @@ public class RequestJsonAutoConfiguration implements WebMvcConfigurer, Applicati
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
-	}
-
-	/**
-	 * 如果需要提高ObjectMapper反序列化的能力，可以在外部配置类重新定义
-	 * @return objectmapper
-	 * */
-	@Bean(name = RequestJsonAutoConfiguration.OBJECT_MAPPER_BEAN_NAME)
-	@ConditionalOnMissingBean(name = RequestJsonAutoConfiguration.OBJECT_MAPPER_BEAN_NAME)
-	public ObjectMapper objectMapper() {
-		return new ObjectMapper().setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 	}
 
 	/**
@@ -77,7 +68,7 @@ public class RequestJsonAutoConfiguration implements WebMvcConfigurer, Applicati
 			Field requestResponseBodyAdviceField = RequestMappingHandlerAdapter.class.getDeclaredField("requestResponseBodyAdvice");
 			ReflectionUtils.makeAccessible(requestResponseBodyAdviceField);
 			List<Object> requestResponseBodyAdvice = (List<Object>) requestResponseBodyAdviceField.get(requestMappingHandlerAdapter);
-			ObjectMapper objectMapper = (ObjectMapper) applicationContext.getBean(RequestJsonAutoConfiguration.OBJECT_MAPPER_BEAN_NAME);
+			ObjectMapper objectMapper = applicationContext.getBean(ObjectMapper.class);
 			resolvers.add(new RequestJsonMethodArgumentResolver(requestMappingHandlerAdapter.getMessageConverters(), requestResponseBodyAdvice, objectMapper));
 			resolvers.add(new RequestJsonParamMethodArgumentResolver(requestMappingHandlerAdapter.getMessageConverters(), requestResponseBodyAdvice, objectMapper));
 		} catch (NoSuchFieldException | IllegalAccessException e) {
