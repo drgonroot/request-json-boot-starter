@@ -79,6 +79,6 @@ public class TestController {
 <dependency>
   <groupId>com.btye102</groupId>
   <artifactId>request-json-boot-starter</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
