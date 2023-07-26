@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.btye102</groupId>
   <artifactId>request-json-boot-starter</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <name>request-json-boot-starter</name>
   <description>request-json-boot-starter 主要在解决application/json的请求数据，可以通过注解获取指定name的数据信息</description>
   <url>https://github.com/drgonroot/request-json-boot-starter</url>
